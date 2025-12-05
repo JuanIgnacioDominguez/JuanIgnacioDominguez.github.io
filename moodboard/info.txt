@@ -1,0 +1,16 @@
+Business: portfolio
+Keywords: personal, portfolio, dark
+Main Font: Montserrat
+Body Font: Roboto
+Font Justification: Montserrat is a geometric sans-serif font that conveys confidence, modernity, and structure—perfect for titles and 
+headers in a professional portfolio. Its bold and clean lines establish a strong visual identity. Roboto, a versatile and highly legible 
+sans-serif, complements it by offering clarity and balance for longer texts. Together, they create a contemporary aesthetic that feels 
+both approachable and refined.
+Primary Color: #0A0A0A
+Secondary Color: #FFFFFF
+Accent Color: #1C1C1C
+Palette Justification: The primary color, a deep charcoal gray (#0A0A0A), sets a bold and sophisticated foundation that enhances the 
+visual weight of the portfolio. The secondary tone (#FFFFFF) introduces brightness and contrast, ensuring readability and balance within 
+the dark theme. The accent shade (#1C1C1C) adds subtle depth and texture, unifying the palette and evoking a timeless, minimalist 
+aesthetic that aligns with the brand’s refined and modern personality.
+Picture: https://www.pexels.com/photo/modern-workspace-with-dual-monitors-and-telescope-33883600/
