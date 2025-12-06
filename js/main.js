@@ -7,35 +7,68 @@ document.addEventListener('DOMContentLoaded', function () {
   const projectPreviewModal = document.getElementById('projectPreviewModal');
   const projectPreviewImage = document.getElementById('projectPreviewImage');
   const projectPreviewTitle = document.getElementById('projectPreviewTitle');
-  const projectPreviewOpenBtn = document.getElementById('projectPreviewOpenBtn');
-  let currentProjectLink = '';
-  const showProjectPreview = (img, title, link) => {
-    if (projectPreviewImage && projectPreviewTitle && projectPreviewOpenBtn) {
+  const projectPreviewFooter = document.getElementById('projectPreviewFooter');
+  const showProjectPreview = (img, title, link, linkFront = '', linkBack = '') => {
+    if (projectPreviewImage && projectPreviewTitle && projectPreviewFooter) {
       projectPreviewImage.src = img;
       projectPreviewImage.alt = title;
       projectPreviewTitle.textContent = title;
-      currentProjectLink = link;
+      
+      projectPreviewFooter.innerHTML = '';
+      
+      if (linkFront && linkBack) {
+        const btnFront = document.createElement('button');
+        btnFront.className = 'btn btn-light rounded-1';
+        btnFront.textContent = 'Ver Front';
+        btnFront.addEventListener('click', () => {
+          const modal = bootstrap.Modal.getInstance(projectPreviewModal);
+          if (modal) modal.hide();
+          openProject(linkFront);
+        });
+        
+        const btnBack = document.createElement('button');
+        btnBack.className = 'btn btn-light rounded-1';
+        btnBack.textContent = 'Ver Back';
+        btnBack.addEventListener('click', () => {
+          const modal = bootstrap.Modal.getInstance(projectPreviewModal);
+          if (modal) modal.hide();
+          openProject(linkBack);
+        });
+        
+        projectPreviewFooter.appendChild(btnFront);
+        projectPreviewFooter.appendChild(btnBack);
+      } else {
+        const btnSingle = document.createElement('button');
+        btnSingle.className = 'btn btn-light rounded-1';
+        btnSingle.textContent = 'Ver Repositorio';
+        btnSingle.addEventListener('click', () => {
+          const modal = bootstrap.Modal.getInstance(projectPreviewModal);
+          if (modal) modal.hide();
+          openProject(link);
+        });
+        projectPreviewFooter.appendChild(btnSingle);
+      }
+      
       const modal = new bootstrap.Modal(projectPreviewModal);
       modal.show();
     }
   };
-  if (projectPreviewOpenBtn) {
-    projectPreviewOpenBtn.addEventListener('click', () => {
-      if (currentProjectLink) {
-        const modal = bootstrap.Modal.getInstance(projectPreviewModal);
-        if (modal) modal.hide();
-        openProject(currentProjectLink);
-      }
-    });
-  }
   const handleFeaturedProjectClick = (e, card) => {
     const img = card.dataset.img;
     const title = card.dataset.title;
-    const link = card.dataset.link || card.querySelector('a')?.href;
-    if (img && title && link) {
+    const link = card.dataset.link;
+    const linkFront = card.dataset.linkFront;
+    const linkBack = card.dataset.linkBack;
+    const hasMultipleRepos = card.dataset.hasMultipleRepos === 'true';
+    
+    if (img && title) {
       e.preventDefault();
       e.stopPropagation();
-      showProjectPreview(img, title, link);
+      if (hasMultipleRepos && linkFront && linkBack) {
+        showProjectPreview(img, title, '', linkFront, linkBack);
+      } else if (link) {
+        showProjectPreview(img, title, link);
+      }
     }
   };
   document.querySelectorAll('.project-card:not(#allProjectsGrid .project-card)').forEach(card => {
@@ -52,35 +85,59 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   const allProjects = [
-    { title: 'Ejercicio 01 - Introducción a HTML', img: 'imgs/Ejercicio01.jpg', link: 'Ejercicios/Ejercicio01/Ejercicios/01.html', tech: 'HTML / CSS', desc: 'Estructura básica en HTML y primeros elementos semánticos.' },
-    { title: 'Ejercicio 02 - Estructura semántica HTML5', img: 'imgs/Ejercicio02.jpg', link: 'Ejercicios/Ejercicio02/01.html', tech: 'HTML / CSS', desc: 'Maquetado semántico con secciones, encabezados y navegación.' },
-    { title: 'Ejercicio 03 - Comenzando con CSS', img: 'imgs/Ejercicio03.jpg', link: 'Ejercicios/Ejercicio03/index.html', tech: 'HTML / CSS', desc: 'Aplicación de estilos para replicar la maqueta de referencia.' },
-    { title: 'Ejercicio 04 - Propiedades de cajas', img: 'imgs/Ejercicio04.jpg', link: 'Ejercicios/Ejercicio04/index.html', tech: 'HTML / CSS', desc: 'Exploración de box model: márgenes, paddings, bordes y layouts.' },
-    { title: 'Ejercicio 05 - Maquetado adaptable', img: 'imgs/Ejercicio05.jpg', link: 'Ejercicios/Ejercicio05/index.html', tech: 'HTML / CSS', desc: 'Ajustes responsive con CSS Media para distintos breakpoints.' },
-    { title: 'Ejercicio 06 - Primeros pasos con Bootstrap 5', img: 'imgs/Ejercicio06.jpg', link: 'Ejercicios/Ejercicio06/Ejercicio4.html', tech: 'Bootstrap 5', desc: 'Prácticas iniciales con componentes; el último punto suma CSS por breakpoint.' },
-    { title: 'Ejercicio 07 - Componentes con Bootstrap 1', img: 'imgs/Ejercicio07.jpg', link: 'Ejercicios/Ejercicio07/index.html', tech: 'Bootstrap 5', desc: 'Maquetado íntegro con Bootstrap 5 complementado por CSS propio.' },
-    { title: 'Ejercicio 08 - Componentes Bootstrap 2', img: 'imgs/Ejercicio08.jpg', link: 'Ejercicios/Ejercicio08/index.html', tech: 'Bootstrap 5', desc: 'Landing responsive realizada exclusivamente con Bootstrap 5.' },
-    { title: 'Ejercicio 09 - jQuery: Manipulación del DOM', img: 'imgs/Ejercicio09.jpg', link: 'Ejercicios/Ejercicio09/index.html', tech: 'jQuery / DOM', desc: 'Selección y manipulación del DOM para igualar el modelo sobre basketball.' },
-    { title: 'Ejercicio 10 - Plugins JavaScript/jQuery', img: 'imgs/Ejercicio10.jpg', link: 'Ejercicios/Ejercicio10/index.html', tech: 'jQuery / Plugins', desc: 'Landing promocional integrando distintos plugins de jQuery.' },
-    { title: 'Primer Parcial', img: 'imgs/PrimerParcial.jpg', link: 'Ejercicios/PrimerParcial/index.html', tech: 'Portfolio', desc: 'Mini portfolio como contenedor de los ejercicios realizados.' }
+    { pos: 1, title: 'Vitalis', img: 'imgs/Vitalis.jpg', linkFront: 'https://github.com/ThomasGiardina/VitalisFront', linkBack: 'https://github.com/ThomasGiardina/Vitalis-Back', tech: 'React Native / Java Spring Boot', desc: 'App móvil para gestión de turnos médicos hospitalarios. Desarrollada con React Native, Expo, Redux y Android Studio para el frontend, con backend en Java Spring Boot.', hasMultipleRepos: true },
+    { pos: 2, title: 'Ejercicio 06 - Primeros pasos con Bootstrap 5', img: 'imgs/Ejercicio06.jpg', link: 'Ejercicios/Ejercicio06/Ejercicio4.html', tech: 'Bootstrap 5', desc: 'Prácticas iniciales con componentes; el último punto suma CSS por breakpoint.' },
+    { pos: 3, title: 'Ejercicio 07 - Componentes con Bootstrap 1', img: 'imgs/Ejercicio07.jpg', link: 'Ejercicios/Ejercicio07/index.html', tech: 'Bootstrap 5', desc: 'Maquetado íntegro con Bootstrap 5 complementado por CSS propio.' },
+    { pos: 4, title: 'Ejercicio 08 - Componentes Bootstrap 2', img: 'imgs/Ejercicio08.jpg', link: 'Ejercicios/Ejercicio08/index.html', tech: 'Bootstrap 5', desc: 'Landing responsive realizada exclusivamente con Bootstrap 5.' },
+    { pos: 5, title: 'Ejercicio 09 - jQuery: Manipulación del DOM', img: 'imgs/Ejercicio09.jpg', link: 'Ejercicios/Ejercicio09/index.html', tech: 'jQuery / DOM', desc: 'Selección y manipulación del DOM para igualar el modelo sobre basketball.' },
+    { pos: 6, title: 'Ejercicio 10 - Plugins JavaScript/jQuery', img: 'imgs/Ejercicio10.jpg', link: 'Ejercicios/Ejercicio10/index.html', tech: 'jQuery / Plugins', desc: 'Landing promocional integrando distintos plugins de jQuery.' },
+    { pos: 7, title: 'Ejercicio 05 - Maquetado adaptable', img: 'imgs/Ejercicio05.jpg', link: 'Ejercicios/Ejercicio05/index.html', tech: 'HTML / CSS', desc: 'Ajustes responsive con CSS Media para distintos breakpoints.' }
   ];
-  const allProjectsGrid = document.getElementById('allProjectsGrid');
-  if (allProjectsGrid) {
-    allProjects.forEach(project => {
-      const li = document.createElement('li');
-      li.className = 'col-12 col-md-6 col-lg-4';
-      li.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link="${project.link}"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-on-dark font-display">${project.title}</h5><p class="card-text text-dim small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-dim">${project.tech}</small><a href="${project.link}" class="text-on-dark text-decoration-none open-project">Ver más →</a></div></article>`;
-      allProjectsGrid.appendChild(li);
+  
+  // Generar cards para la sección principal (solo pos 1-6)
+  const featuredProjectsGrid = document.getElementById('featuredProjectsGrid');
+  if (featuredProjectsGrid) {
+    const featuredProjects = allProjects.filter(p => p.pos >= 1 && p.pos <= 6).sort((a, b) => a.pos - b.pos);
+    featuredProjects.forEach(project => {
+      const col = document.createElement('div');
+      col.className = 'col-12 col-md-6 col-lg-4';
+      
+      if (project.hasMultipleRepos) {
+        col.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link-front="${project.linkFront}" data-link-back="${project.linkBack}" data-has-multiple-repos="true"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-light font-display">${project.title}</h5><p class="card-text text-secondary small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-secondary">${project.tech}</small><span class="text-light text-decoration-none">Ver más →</span></div></article>`;
+      } else {
+        col.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link="${project.link}"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-light font-display">${project.title}</h5><p class="card-text text-secondary small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-secondary">${project.tech}</small><span class="text-light text-decoration-none open-project">Ver más →</span></div></article>`;
+      }
+      
+      featuredProjectsGrid.appendChild(col);
     });
-    const closeModalAndOpen = (link) => {
-      const modal = bootstrap.Modal.getInstance(document.getElementById('allProjectsModal'));
-      if (modal) modal.hide();
-      openProject(link);
-    };
-    allProjectsGrid.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('click', () => closeModalAndOpen(card.dataset.link));
+    
+    // Agregar event listeners a las cards destacadas
+    featuredProjectsGrid.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', (e) => handleFeaturedProjectClick(e, card));
     });
   }
+  
+  // Generar cards para el modal (todos los proyectos ordenados por pos)
+  const allProjectsGrid = document.getElementById('allProjectsGrid');
+  if (allProjectsGrid) {
+    const sortedProjects = [...allProjects].sort((a, b) => a.pos - b.pos);
+    sortedProjects.forEach(project => {
+      const li = document.createElement('li');
+      li.className = 'col-12 col-md-6 col-lg-4';
+      if (project.hasMultipleRepos) {
+        li.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link-front="${project.linkFront}" data-link-back="${project.linkBack}" data-has-multiple-repos="true"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-on-dark font-display">${project.title}</h5><p class="card-text text-dim small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-dim">${project.tech}</small><span class="text-on-dark text-decoration-none">Ver más →</span></div></article>`;
+      } else {
+        li.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link="${project.link}"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-on-dark font-display">${project.title}</h5><p class="card-text text-dim small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-dim">${project.tech}</small><span class="text-on-dark text-decoration-none open-project">Ver más →</span></div></article>`;
+      }
+      allProjectsGrid.appendChild(li);
+    });
+    
+    // Agregar event listeners a las cards del modal
+    allProjectsGrid.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', (e) => handleFeaturedProjectClick(e, card));
+    });
+  }
+  
   const header = document.querySelector('header');
   const body = document.body;
   const navLinks = document.querySelectorAll('[data-section]');
