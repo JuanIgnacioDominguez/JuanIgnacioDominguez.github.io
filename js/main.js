@@ -71,9 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
   };
-  document.querySelectorAll('.project-card:not(#allProjectsGrid .project-card)').forEach(card => {
-    card.addEventListener('click', (e) => handleFeaturedProjectClick(e, card));
-  });
+  
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
@@ -86,15 +84,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   const allProjects = [
     { pos: 1, title: 'Vitalis', img: 'imgs/Vitalis.jpg', linkFront: 'https://github.com/ThomasGiardina/VitalisFront', linkBack: 'https://github.com/ThomasGiardina/Vitalis-Back', tech: 'React Native / Java Spring Boot', desc: 'App móvil para gestión de turnos médicos hospitalarios. Desarrollada con React Native, Expo, Redux y Android Studio para el frontend, con backend en Java Spring Boot.', hasMultipleRepos: true },
-    { pos: 2, title: 'Ejercicio 06 - Primeros pasos con Bootstrap 5', img: 'imgs/Ejercicio06.jpg', link: 'Ejercicios/Ejercicio06/Ejercicio4.html', tech: 'Bootstrap 5', desc: 'Prácticas iniciales con componentes; el último punto suma CSS por breakpoint.' },
-    { pos: 3, title: 'Ejercicio 07 - Componentes con Bootstrap 1', img: 'imgs/Ejercicio07.jpg', link: 'Ejercicios/Ejercicio07/index.html', tech: 'Bootstrap 5', desc: 'Maquetado íntegro con Bootstrap 5 complementado por CSS propio.' },
-    { pos: 4, title: 'Ejercicio 08 - Componentes Bootstrap 2', img: 'imgs/Ejercicio08.jpg', link: 'Ejercicios/Ejercicio08/index.html', tech: 'Bootstrap 5', desc: 'Landing responsive realizada exclusivamente con Bootstrap 5.' },
-    { pos: 5, title: 'Ejercicio 09 - jQuery: Manipulación del DOM', img: 'imgs/Ejercicio09.jpg', link: 'Ejercicios/Ejercicio09/index.html', tech: 'jQuery / DOM', desc: 'Selección y manipulación del DOM para igualar el modelo sobre basketball.' },
-    { pos: 6, title: 'Ejercicio 10 - Plugins JavaScript/jQuery', img: 'imgs/Ejercicio10.jpg', link: 'Ejercicios/Ejercicio10/index.html', tech: 'jQuery / Plugins', desc: 'Landing promocional integrando distintos plugins de jQuery.' },
-    { pos: 7, title: 'Ejercicio 05 - Maquetado adaptable', img: 'imgs/Ejercicio05.jpg', link: 'Ejercicios/Ejercicio05/index.html', tech: 'HTML / CSS', desc: 'Ajustes responsive con CSS Media para distintos breakpoints.' }
+    { pos: 2, title: 'Proyecto 2', img: 'imgs/Ejercicio06.jpg', link: '#', tech: 'Próximamente', desc: 'Proyecto en desarrollo.' },
+    { pos: 3, title: 'Proyecto 3', img: 'imgs/Ejercicio07.jpg', link: '#', tech: 'Próximamente', desc: 'Proyecto en desarrollo.' },
+    { pos: 4, title: 'Proyecto 4', img: 'imgs/Ejercicio08.jpg', link: '#', tech: 'Próximamente', desc: 'Proyecto en desarrollo.' },
+    { pos: 5, title: 'Proyecto 5', img: 'imgs/Ejercicio09.jpg', link: '#', tech: 'Próximamente', desc: 'Proyecto en desarrollo.' },
+    { pos: 6, title: 'Proyecto 6', img: 'imgs/Ejercicio10.jpg', link: '#', tech: 'Próximamente', desc: 'Proyecto en desarrollo.' }
   ];
   
-  // Generar cards para la sección principal (solo pos 1-6)
   const featuredProjectsGrid = document.getElementById('featuredProjectsGrid');
   if (featuredProjectsGrid) {
     const featuredProjects = allProjects.filter(p => p.pos >= 1 && p.pos <= 6).sort((a, b) => a.pos - b.pos);
@@ -103,21 +99,19 @@ document.addEventListener('DOMContentLoaded', function () {
       col.className = 'col-12 col-md-6 col-lg-4';
       
       if (project.hasMultipleRepos) {
-        col.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link-front="${project.linkFront}" data-link-back="${project.linkBack}" data-has-multiple-repos="true"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-light font-display">${project.title}</h5><p class="card-text text-secondary small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-secondary">${project.tech}</small><span class="text-light text-decoration-none">Ver más →</span></div></article>`;
+        col.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link-front="${project.linkFront}" data-link-back="${project.linkBack}" data-has-multiple-repos="true"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-light font-display">${project.title}</h5><p class="card-text text-secondary small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-secondary">${project.tech}</small><span class="text-light text-decoration-none">Ver más →</span></div></article>`;
       } else {
-        col.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link="${project.link}"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-light font-display">${project.title}</h5><p class="card-text text-secondary small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-secondary">${project.tech}</small><span class="text-light text-decoration-none open-project">Ver más →</span></div></article>`;
+        col.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link="${project.link}"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-light font-display">${project.title}</h5><p class="card-text text-secondary small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-secondary">${project.tech}</small><span class="text-light text-decoration-none open-project">Ver más →</span></div></article>`;
       }
       
       featuredProjectsGrid.appendChild(col);
     });
     
-    // Agregar event listeners a las cards destacadas
     featuredProjectsGrid.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('click', (e) => handleFeaturedProjectClick(e, card));
     });
   }
   
-  // Generar cards para el modal (todos los proyectos ordenados por pos)
   const allProjectsGrid = document.getElementById('allProjectsGrid');
   if (allProjectsGrid) {
     const sortedProjects = [...allProjects].sort((a, b) => a.pos - b.pos);
@@ -125,14 +119,13 @@ document.addEventListener('DOMContentLoaded', function () {
       const li = document.createElement('li');
       li.className = 'col-12 col-md-6 col-lg-4';
       if (project.hasMultipleRepos) {
-        li.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link-front="${project.linkFront}" data-link-back="${project.linkBack}" data-has-multiple-repos="true"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-on-dark font-display">${project.title}</h5><p class="card-text text-dim small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-dim">${project.tech}</small><span class="text-on-dark text-decoration-none">Ver más →</span></div></article>`;
+        li.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link-front="${project.linkFront}" data-link-back="${project.linkBack}" data-has-multiple-repos="true"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-on-dark font-display">${project.title}</h5><p class="card-text text-dim small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-dim">${project.tech}</small><span class="text-on-dark text-decoration-none">Ver más →</span></div></article>`;
       } else {
-        li.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link="${project.link}"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}" onerror="this.src='imgs/Ejercicio05.jpg'"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-on-dark font-display">${project.title}</h5><p class="card-text text-dim small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-dim">${project.tech}</small><span class="text-on-dark text-decoration-none open-project">Ver más →</span></div></article>`;
+        li.innerHTML = `<article class="card h-100 shadow-lg border-0 project-card bg-accent rounded-3 overflow-hidden position-relative" data-title="${project.title}" data-img="${project.img}" data-link="${project.link}"><img src="${project.img}" class="card-img-top object-fit-cover" style="height: 180px;" alt="${project.title}"><div class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"><span class="text-light fw-semibold open-project-overlay">Ver proyecto →</span></div><div class="card-body"><h5 class="card-title text-on-dark font-display">${project.title}</h5><p class="card-text text-dim small">${project.desc}</p></div><div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center"><small class="text-dim">${project.tech}</small><span class="text-on-dark text-decoration-none open-project">Ver más →</span></div></article>`;
       }
       allProjectsGrid.appendChild(li);
     });
     
-    // Agregar event listeners a las cards del modal
     allProjectsGrid.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('click', (e) => handleFeaturedProjectClick(e, card));
     });
@@ -220,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   document.querySelectorAll('.stars-background').forEach(createStars);
   function initAboutCarousel() {
-    if (typeof jQuery !== 'undefined' && $.fn.owlCarousel && $('.about-carousel').length) {
+    if (typeof jQuery !== typeof undefined && $.fn.owlCarousel && $('.about-carousel').length) {
       $('.about-carousel').owlCarousel({
         loop: true,
         margin: 20,
@@ -239,12 +232,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }
   }
-  if (typeof jQuery !== 'undefined' && typeof $.fn !== 'undefined' && typeof $.fn.owlCarousel !== 'undefined') {
+  if (typeof jQuery !== typeof undefined && typeof $.fn !== typeof undefined && typeof $.fn.owlCarousel !== typeof undefined) {
     initAboutCarousel();
   } else {
     window.addEventListener('load', function() {
       setTimeout(function() {
-        if (typeof jQuery !== 'undefined' && $.fn.owlCarousel) {
+        if (typeof jQuery !== typeof undefined && $.fn.owlCarousel) {
           initAboutCarousel();
         }
       }, 500);
