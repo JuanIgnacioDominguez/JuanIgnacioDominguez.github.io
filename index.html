@@ -1,438 +1,232 @@
 <!doctype html>
-<html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Juan Ignacio DomInguez - Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/custom.css">
-  </head>
-  <body>
-    <a href="#hero" class="visually-hidden-focusable">Saltar al contenido</a>
-    <header class="bg-accent border-bottom border-secondary border-opacity-10" aria-label="Navegación principal">
-      <nav class="container navbar navbar-expand-lg navbar-dark py-3 px-3 px-md-4" aria-label="Navegación principal">
-        <a class="navbar-brand d-flex align-items-center gap-2 text-light" href="#hero">
-          <svg class="d-none d-md-block" width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"/></svg>
-          <span class="h6 mb-0 fw-bold font-display d-none d-md-inline">Juan Ignacio Dominguez</span>
-          <span class="h6 mb-0 fw-bold font-display d-md-none">Juan Dominguez</span>
-        </a>
-        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto align-items-center gap-3">
-            <li class="nav-item"><a class="nav-link text-light" href="#hero" data-section="hero">Inicio</a></li>
-            <li class="nav-item"><a class="nav-link text-light" href="#proyectos" data-section="proyectos">Proyectos</a></li>
-            <li class="nav-item"><a class="nav-link text-light" href="#habilidades" data-section="habilidades">Habilidades</a></li>
-            <li class="nav-item"><a class="nav-link text-light" href="#mas-sobre-mi" data-section="mas-sobre-mi">Sobre mí</a></li>
-            <li class="nav-item"><a class="btn btn-light btn-sm rounded-1 px-3 d-none d-lg-inline-block" href="#contacto" data-section="contacto">Contacto</a></li>
-            <li class="nav-item d-lg-none"><a class="nav-link text-light" href="#contacto" data-section="contacto">Contacto</a></li>
-          </ul>
-        </div>
-      </nav>
-    </header>
+<html lang="es" data-theme="dark">
 
-    <main>
-      
-      <section id="hero" aria-labelledby="hero-title" class="py-6 py-lg-6 py-md-5 py-sm-4 min-vh-100 d-flex align-items-center position-relative">
-        <div class="stars-background"></div>
-        <div class="container position-relative">
-          <div class="row align-items-center gy-5">
-            <div class="col-lg-6 order-lg-2 text-center position-relative" style="z-index: 2;">
-              <img src="imgs/FotoPersonal.png" alt="Foto de Juan Ignacio Domínguez" class="d-block mx-auto object-fit-cover rounded-circle border border-white border-opacity-10 shadow-lg position-relative" style="z-index: 3; width: 400px; height: 400px; max-width: 100%;" />
-            </div>
-            <div class="col-lg-6 order-lg-1 text-center text-lg-start">
-            <h1 id="hero-title" class="display-3 fw-bold font-display text-light mb-3">Juan Ignacio Dominguez</h1>
-            <h2 class="h5 text-secondary mb-4">Desarrollador Full-Stack & Diseñador UI/UX</h2>
-            <p id="sobre-mi" class="lead text-secondary mb-4">Soy un desarrollador apasionado por crear soluciones digitales innovadoras. Con experiencia en desarrollo full-stack, me especializo en construir aplicaciones web modernas y experiencias de usuario excepcionales. Mi enfoque combina habilidades técnicas sólidas con un ojo para el diseño, transformando ideas complejas en productos funcionales y visualmente atractivos.</p>
-              <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
-                <a class="btn btn-light rounded-1 px-4 py-2" href="#proyectos">Ver Proyectos</a>
-                <a class="btn btn-outline-light rounded-1 px-4 py-2" href="CV- Juan Ignacio Dominguez.pdf" download>Descargar CV</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Juan Ignacio Dominguez | Full-Stack Developer</title>
+  <meta name="description"
+    content="Portfolio de Juan Ignacio Dominguez - Desarrollador Full-Stack especializado en React, Spring Boot y UI/UX.">
+  <meta name="author" content="Juan Ignacio Dominguez">
+  <meta name="theme-color" content="#050508">
+  <link rel="canonical" href="https://juanignaciodominguez.github.io/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/custom.css">
+</head>
 
-      
-      <section id="proyectos" aria-labelledby="proyectos-title" class="py-6 position-relative">
-        <div class="stars-background"></div>
-        <div class="container position-relative pt-3 pt-md-0">
-          <h2 id="proyectos-title" class="display-5 fw-bold text-center text-light mb-5 font-display">Proyectos Destacados</h2>
-          <div class="row g-4" id="featuredProjectsGrid">
-          </div>
-          <div class="text-center mt-5">
-            <button type="button" class="btn btn-outline-light btn-lg rounded-1 px-5" data-bs-toggle="modal" data-bs-target="#allProjectsModal">
-              Ver más proyectos
+<body>
+  <div class="bg-animation">
+    <div class="bg-gradient bg-gradient-1"></div>
+    <div class="bg-gradient bg-gradient-2"></div>
+    <div class="bg-gradient bg-gradient-3"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container">
+      <nav class="nav">
+        <a href="#" class="nav-brand">Juan Ignacio Dominguez</a>
+        <div class="nav-links" id="navLinks">
+          <a href="#hero" class="nav-link active" data-i18n="nav.home">Inicio</a>
+          <a href="#proyectos" class="nav-link" data-i18n="nav.projects">Proyectos</a>
+          <a href="#habilidades" class="nav-link" data-i18n="nav.skills">Skills</a>
+          <a href="#sobre-mi" class="nav-link" data-i18n="nav.about">Sobre mí</a>
+          <a href="#contacto" class="nav-cta" data-i18n="nav.contact">Contactar</a>
+          <div class="nav-controls">
+            <button class="nav-control-btn" id="langToggle" title="Cambiar idioma" aria-label="Cambiar idioma">
+              <span id="langIcon">EN</span>
+            </button>
+            <button class="nav-control-btn" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema">
+              <i class="bi bi-moon-fill" id="themeIcon"></i>
             </button>
           </div>
         </div>
-      </section>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-      
-      <section id="habilidades" aria-labelledby="habilidades-title" class="py-6 bg-accent text-light position-relative overflow-hidden">
-        <div class="stars-background"></div>
-        <div class="container position-relative pt-3 pt-md-0">
-          <div class="text-center mb-5">
-            <h2 id="habilidades-title" class="display-5 fw-bold mb-3 font-display">Mis Habilidades</h2>
-            <p class="lead text-dim">Tecnologías y herramientas que domino</p>
-          </div>
-          <div class="row g-3 justify-content-center">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-1 position-relative z-1">
-                  <i class="devicon-html5-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">HTML5</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-css3-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">CSS3</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-javascript-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">JavaScript</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-bootstrap-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">Bootstrap</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-figma-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">Figma</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-git-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">Git</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-react-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">React</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-python-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">Python</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-java-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">Java</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-mongodb-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">MongoDB</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-mysql-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">MySQL</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-tailwindcss-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">TailwindCSS</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-spring-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">Spring Boot</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-redux-original skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">Redux</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-react-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">React Native</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-github-original skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">GitHub</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-vscode-plain skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">VS Code</span>
-              </div>
-            </div>
-            <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-2">
-              <div class="skill-item d-flex flex-column align-items-center bg-app rounded-3 shadow-lg skill-hover position-relative overflow-hidden">
-                <div class="skill-icon-wrapper mb-2 position-relative z-1">
-                  <i class="devicon-npm-original-wordmark skill-icon" style="font-size: 2rem;"></i>
-                </div>
-                <span class="text-center small fw-semibold">NPM</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
-      <section id="mas-sobre-mi" aria-labelledby="mas-sobre-mi-title" class="py-6 bg-app position-relative">
-        <div class="stars-background"></div>
-        <div class="container position-relative pt-3 pt-md-0">
-          <h2 id="mas-sobre-mi-title" class="display-5 fw-bold text-center text-on-dark mb-5 font-display">Más sobre mí</h2>
-          <div class="owl-carousel about-carousel mx-auto">
-            <div class="item">
-              <div class="carousel-item-wrapper position-relative rounded overflow-hidden shadow-lg">
-                <img src="imgs/Carrousel1.jpg" class="w-100 object-fit-cover d-md-none" alt="Muay Thai" style="height: 350px;">
-                <img src="imgs/Carrousel1.jpg" class="w-100 object-fit-cover d-none d-md-block" alt="Muay Thai" style="height: 500px;">
-                <div class="carousel-caption position-absolute bottom-0 start-0 end-0 p-3">
-                  <div class="carousel-caption-content">
-                    <h5 class="font-display">Muay Thai</h5>
-                    <p class="mb-0">Una de mis grandes pasiones es el Muay Thai. Este arte marcial tailandés no solo me mantiene en forma física, sino que también me enseña disciplina, perseverancia y la importancia de superar mis límites, valores que aplico tanto en mi vida personal como profesional.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="carousel-item-wrapper position-relative rounded overflow-hidden shadow-lg">
-                <img src="imgs/Carrousel2.jpg" class="w-100 object-fit-cover d-md-none" alt="Amigos" style="height: 350px;">
-                <img src="imgs/Carrousel2.jpg" class="w-100 object-fit-cover d-none d-md-block" alt="Amigos" style="height: 500px;">
-                <div class="carousel-caption position-absolute bottom-0 start-0 end-0 p-3">
-                  <div class="carousel-caption-content">
-                    <h5 class="font-display">Amigos</h5>
-                    <p class="mb-0">Valoro profundamente las relaciones humanas y el tiempo que paso con mis amigos. Creo firmemente que las mejores ideas surgen de la colaboración y el intercambio de experiencias con personas que comparten mis intereses y valores.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="carousel-item-wrapper position-relative rounded overflow-hidden shadow-lg">
-                <img src="imgs/Carrousel3.jpg" class="w-100 object-fit-cover d-md-none" alt="Mascotas" style="height: 350px;">
-                <img src="imgs/Carrousel3.jpg" class="w-100 object-fit-cover d-none d-md-block" alt="Mascotas" style="height: 500px;">
-                <div class="carousel-caption position-absolute bottom-0 start-0 end-0 p-3">
-                  <div class="carousel-caption-content">
-                    <h5 class="font-display">Mascotas</h5>
-                    <p class="mb-0">Tengo un perro y un gato, y los quiero mucho. Me acompañan todos los días y me recuerdan la importancia del cuidado, la paciencia y el cariño.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item">
-              <div class="carousel-item-wrapper position-relative rounded overflow-hidden shadow-lg">
-                <img src="imgs/Carrousel4.webp" class="w-100 object-fit-cover d-md-none" alt="Nuevas Experiencias" style="height: 350px;">
-                <img src="imgs/Carrousel4.webp" class="w-100 object-fit-cover d-none d-md-block" alt="Nuevas Experiencias" style="height: 500px;">
-                <div class="carousel-caption position-absolute bottom-0 start-0 end-0 p-3">
-                  <div class="carousel-caption-content">
-                    <h5 class="font-display">Ingenieria en Informatica</h5>
-                    <p class="mb-0">Actualmente curso 4.º año de Ingeniería en Informática. Es una carrera que me forma profesionalmente y me ayudó muchísimo a crecer técnica y personalmente.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      
-      <section id="contacto" aria-labelledby="contacto-title" class="py-6 bg-accent text-light position-relative">
-        <div class="container pt-3 pt-md-0">
-          <div class="row g-5 align-items-start">
-            <div class="col-lg-6">
-              <h2 id="contacto-title" class="display-5 fw-bold font-display mb-4">Hablemos</h2>
-              <p class="text-dim mb-4 lead">¿Tienes un proyecto en mente o simplemente quieres saludar? No dudes en enviarme un mensaje. Siempre estoy abierto a nuevas colaboraciones y oportunidades interesantes.</p>
-              <div class="d-flex flex-column gap-3 mb-4">
-                <a href="mailto:juanigdominguez03@gmail.com" class="d-flex align-items-center text-on-dark text-decoration-none contact-link contact-icon-hover">
-                  <span class="material-symbols-outlined me-2 contact-icon">mail</span>
-                  <span>juanigdominguez03@gmail.com</span>
-                </a>
-                <a href="tel:+5491126441320" class="d-flex align-items-center text-on-dark text-decoration-none contact-link contact-icon-hover">
-                  <span class="material-symbols-outlined me-2 contact-icon">call</span>
-                  <span>+54 9 11-2644-1320</span>
-                </a>
-              </div>
-              <div class="d-flex gap-3">
-                <a href="https://www.linkedin.com/in/juan-ignacio-dominguez-91a569308/" target="_blank" rel="noopener" class="text-on-dark text-decoration-none social-link d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px;" aria-label="LinkedIn">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M6 9H2V21H6V9Z" stroke-linecap="round" stroke-linejoin="round"/>
-                    <circle cx="4" cy="4" r="2"/>
-                  </svg>
-                </a>
-                <a href="https://github.com/JuanIgnacioDominguez" target="_blank" rel="noopener" class="text-on-dark text-decoration-none social-link d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px;" aria-label="GitHub">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <path d="M9 19C4 20.5 4 16.5 2 16M22 16V19C22 19.5 18 20.5 15 20.5C12 20.5 8 19.5 8 19.5C8 19.5 9 18 9 16C9 14 6 15 6 11C6 9 7 7 9 7C9 6 10 4 12 4C13 4 14 5 15 5C16 5 17 4 18 4C20 4 21 6 21 8C21 12 18 13 18 15C18 17 19 18.5 19 19.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-                <a href="https://www.instagram.com/juanchydominguez_/" target="_blank" rel="noopener" class="text-on-dark text-decoration-none social-link d-inline-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px;" aria-label="Portfolio">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                    <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5932 15.1514 13.8416 15.5297C13.0901 15.9079 12.2385 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22768 13.4229 8.09402 12.5922C7.96035 11.7615 8.09202 10.9099 8.47029 10.1584C8.84856 9.40685 9.45418 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.1283C15.4785 9.73514 15.8741 10.5211 16 11.37Z"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <form id="contactForm">
-                <div class="mb-3">
-                  <input id="name" name="name" class="form-control form-control-dark rounded-1" placeholder="Nombre" required>
-                </div>
-                <div class="mb-3">
-                  <input id="email" name="email" type="email" class="form-control form-control-dark rounded-1" placeholder="Email" required>
-                </div>
-                <div class="mb-3">
-                  <input id="subject" name="subject" class="form-control form-control-dark rounded-1" placeholder="Asunto">
-                </div>
-                <div class="mb-3">
-                  <textarea id="message" name="message" class="form-control form-control-dark rounded-1" rows="4" placeholder="Mensaje" required></textarea>
-                </div>
-                <div class="d-flex justify-content-end justify-content-center justify-content-lg-end">
-                  <button type="submit" class="btn btn-light rounded-1 px-4">Enviar Mensaje</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="bg-accent text-light py-4 py-md-5 border-top border-secondary border-opacity-10">
+  <main>
+    <section id="hero" class="hero">
       <div class="container">
-        <div class="row align-items-center mb-3">
-          <div class="col-12 col-md-4 d-flex align-items-center justify-content-center justify-content-md-start gap-3 mb-3 mb-md-0">
-            <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M44 4H30.6666V17.3334H17.3334V30.6666H4V44H44V4Z" fill="currentColor"/></svg>
-            <div class="fw-bold font-display text-on-dark text-center text-md-start">Juan Ignacio Domínguez</div>
+        <div class="hero-content">
+          <div class="hero-text" data-aos="fade-right">
+            <div class="hero-badge">
+              <span class="dot"></span>
+              <span data-i18n="hero.badge">Disponible para proyectos</span>
+            </div>
+            <h1 class="hero-title">Juan Ignacio Dominguez</h1>
+            <p class="hero-subtitle"><span id="typingText"></span><span class="cursor"></span></p>
+            <p class="hero-desc" data-i18n="hero.desc">Transformo ideas en experiencias digitales excepcionales.
+              Especializado en <strong>React</strong>, <strong>Spring Boot</strong> y diseño de interfaces que cautivan
+              usuarios.</p>
+            <div class="hero-btns">
+              <a href="#proyectos" class="btn btn-primary"><span data-i18n="hero.cta1">Ver Proyectos</span><i
+                  class="bi bi-arrow-down"></i></a>
+              <a href="CV- Juan Ignacio Dominguez.pdf" download class="btn btn-outline"><i
+                  class="bi bi-download"></i><span data-i18n="hero.cta2">Descargar CV</span></a>
+            </div>
+            <div class="tech-stack">
+              <span>Tech Stack</span>
+              <div class="tech-icons">
+                <i class="devicon-react-plain" title="React"></i>
+                <i class="devicon-spring-plain" title="Spring Boot"></i>
+                <i class="devicon-javascript-plain" title="JavaScript"></i>
+                <i class="devicon-java-plain" title="Java"></i>
+                <i class="devicon-mysql-plain" title="MySQL"></i>
+                <i class="devicon-tailwindcss-original" title="Tailwind"></i>
+              </div>
+            </div>
           </div>
-          <nav class="col-12 col-md-4 d-flex justify-content-center flex-wrap gap-3 mb-3 mb-md-0" aria-label="Navegación del pie de página">
-            <a class="text-on-dark text-decoration-none" href="#hero">Inicio</a>
-            <a class="text-on-dark text-decoration-none" href="#proyectos">Proyectos</a>
-            <a class="text-on-dark text-decoration-none" href="#habilidades">Habilidades</a>
-            <a class="text-on-dark text-decoration-none" href="#mas-sobre-mi">Sobre mí</a>
-            <a class="text-on-dark text-decoration-none" href="#contacto">Contacto</a>
-          </nav>
-          <div class="col-12 col-md-4 d-flex justify-content-center justify-content-md-end gap-3">
-            <a href="https://www.linkedin.com/in/juan-ignacio-dominguez-91a569308/" target="_blank" rel="noopener" class="text-on-dark text-decoration-none social-link d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" aria-label="LinkedIn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M6 9H2V21H6V9Z" stroke-linecap="round" stroke-linejoin="round"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-            </a>
-            <a href="https://github.com/JuanIgnacioDominguez" target="_blank" rel="noopener" class="text-on-dark text-decoration-none social-link d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" aria-label="GitHub">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 19C4 20.5 4 16.5 2 16M22 16V19C22 19.5 18 20.5 15 20.5C12 20.5 8 19.5 8 19.5C8 19.5 9 18 9 16C9 14 6 15 6 11C6 9 7 7 9 7C9 6 10 4 12 4C13 4 14 5 15 5C16 5 17 4 18 4C20 4 21 6 21 8C21 12 18 13 18 15C18 17 19 18.5 19 19.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-            <a href="https://www.instagram.com/juanchydominguez_/" target="_blank" rel="noopener" class="text-on-dark text-decoration-none social-link d-inline-flex align-items-center justify-content-center" style="width: 40px; height: 40px;" aria-label="Portfolio">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37C16.1234 12.2022 15.9813 13.0522 15.5938 13.799C15.2063 14.5458 14.5932 15.1514 13.8416 15.5297C13.0901 15.9079 12.2385 16.0396 11.4078 15.9059C10.5771 15.7723 9.80976 15.3801 9.21484 14.7852C8.61992 14.1902 8.22768 13.4229 8.09402 12.5922C7.96035 11.7615 8.09202 10.9099 8.47029 10.1584C8.84856 9.40685 9.45418 8.79374 10.201 8.40624C10.9478 8.01874 11.7978 7.87659 12.63 8C13.4789 8.12588 14.2649 8.52146 14.8717 9.1283C15.4785 9.73514 15.8741 10.5211 16 11.37Z"/>
-              </svg>
-            </a>
+          <div class="hero-image" data-aos="fade-left" data-aos-delay="200">
+            <img src="imgs/FotoPersonal.png" alt="Juan Ignacio Dominguez" width="400" height="400">
           </div>
-        </div>
-        <div class="text-center pt-3 border-top border-secondary border-opacity-10">
-          <small class="text-dim">© <span id="year"></span> Juan Ignacio Domínguez. Todos los derechos reservados.</small>
         </div>
       </div>
-    </footer>
+    </section>
 
-    
-    <div class="modal fade" id="allProjectsModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-        <div class="modal-content bg-accent text-light border border-secondary border-opacity-10 shadow-lg">
-          <div class="modal-header border-bottom border-secondary border-opacity-10">
-            <h5 class="modal-title font-display">Todos los Proyectos</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+    <div class="section-divider"></div>
+
+    <section id="proyectos">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <p class="section-label">Portfolio</p>
+          <h2 class="section-title" data-i18n="projects.title">Proyectos Destacados</h2>
+          <p class="section-desc" data-i18n="projects.desc">Una selección de mis trabajos más recientes</p>
+        </div>
+        <div class="projects-grid" id="projectsGrid" data-aos="fade-up" data-aos-delay="100"></div>
+        <div style="text-align:center;margin-top:3.5rem" data-aos="fade-up" data-aos-delay="200">
+          <button class="btn btn-outline" id="showAllProjects"><i class="bi bi-grid-3x3-gap"></i><span
+              data-i18n="projects.viewAll">Ver todos los proyectos</span></button>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="habilidades">
+      <div class="skills-wave-container">
+        <div class="skills-wave"></div>
+        <div class="skills-wave"></div>
+        <div class="skills-wave"></div>
+        <div class="skills-particle"></div>
+        <div class="skills-particle"></div>
+        <div class="skills-particle"></div>
+        <div class="skills-particle"></div>
+        <div class="skills-particle"></div>
+        <div class="skills-particle"></div>
+        <div class="skills-particle"></div>
+        <div class="skills-particle"></div>
+      </div>
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <p class="section-label">Expertise</p>
+          <h2 class="section-title" data-i18n="skills.title">Tecnologías & Herramientas</h2>
+          <p class="section-desc" data-i18n="skills.desc">Las tecnologías que utilizo para crear soluciones</p>
+        </div>
+        <div class="skills-grid" id="skillsGrid" data-aos="fade-up" data-aos-delay="100"></div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="sobre-mi">
+      <div class="container">
+        <div class="section-header" data-aos="fade-up">
+          <p class="section-label">Personal</p>
+          <h2 class="section-title" data-i18n="about.title">Más sobre mí</h2>
+          <p class="section-desc" data-i18n="about.desc">Conoce un poco más de quien soy fuera del código</p>
+        </div>
+        <div class="owl-carousel about-carousel" id="aboutCarousel" data-aos="fade-up" data-aos-delay="100"></div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info" data-aos="fade-right">
+            <h2 data-i18n="contact.title">Hablemos</h2>
+            <p data-i18n="contact.desc">¿Tienes un proyecto en mente o simplemente quieres saludar? Estoy disponible
+              para nuevas oportunidades.</p>
+            <a href="mailto:juanigdominguez03@gmail.com" class="contact-link"><i
+                class="bi bi-envelope-fill"></i>juanigdominguez03@gmail.com</a>
+            <a href="tel:+5491126441320" class="contact-link"><i class="bi bi-phone-fill"></i>+54 9 11-2644-1320</a>
+            <div class="social-links">
+              <a href="https://www.linkedin.com/in/juan-ignacio-dominguez-91a569308/" target="_blank"
+                class="social-link" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+              <a href="https://github.com/JuanIgnacioDominguez" target="_blank" class="social-link"
+                aria-label="GitHub"><i class="bi bi-github"></i></a>
+              <a href="https://www.instagram.com/juanchydominguez_/" target="_blank" class="social-link"
+                aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            </div>
           </div>
-          <div class="modal-body overflow-auto" style="max-height: 70vh;">
-            <ul class="row g-4 list-unstyled" id="allProjectsGrid">
-            </ul>
-          </div>
+          <form class="contact-form" id="contactForm" data-aos="fade-left">
+            <input type="text" name="name" data-i18n-placeholder="contact.name" placeholder="Tu nombre" required>
+            <input type="email" name="email" data-i18n-placeholder="contact.email" placeholder="Tu email" required>
+            <input type="text" name="subject" data-i18n-placeholder="contact.subject" placeholder="Asunto">
+            <textarea name="message" rows="5" data-i18n-placeholder="contact.message" placeholder="Tu mensaje"
+              required></textarea>
+            <button type="submit" class="btn btn-primary"><i class="bi bi-send-fill"></i><span
+                data-i18n="contact.send">Enviar Mensaje</span></button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <span class="nav-brand">Juan Ignacio Dominguez</span>
+        <small>© <span id="year"></span> <span data-i18n="footer.rights">Todos los derechos reservados.</span></small>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="projectModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle"></h3>
+        <button class="modal-close" id="modalClose"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="modal-body">
+        <div class="owl-carousel modal-carousel" id="modalCarousel"></div>
+        <div class="modal-info">
+          <h4 id="modalName"></h4>
+          <p id="modalDesc"></p>
+          <div class="modal-tech" id="modalTech"></div>
+          <div class="modal-links" id="modalLinks"></div>
         </div>
       </div>
     </div>
+  </div>
 
-    
-    <div class="modal fade" id="projectPreviewModal" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content bg-accent text-light border border-secondary border-opacity-10 shadow-lg">
-          <div class="modal-header border-bottom border-secondary border-opacity-10">
-            <h5 class="modal-title font-display" id="projectPreviewTitle">Proyecto</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          </div>
-          <div class="modal-body text-center p-0">
-            <img id="projectPreviewImage" src="" alt="Preview del proyecto" class="w-100" style="max-height: 70vh; object-fit: contain;">
-          </div>
-          <div class="modal-footer border-top border-secondary border-opacity-10 d-flex justify-content-center gap-3" id="projectPreviewFooter">
-          </div>
-        </div>
+  <div class="modal" id="allProjectsModal">
+    <div class="modal-content" style="max-width:1250px">
+      <div class="modal-header">
+        <h3 data-i18n="projects.all">Todos los Proyectos</h3>
+        <button class="modal-close" id="closeAllProjects"><i class="bi bi-x-lg"></i></button>
+      </div>
+      <div class="modal-body" style="padding:2.5rem">
+        <div class="projects-grid" id="allProjectsGrid"></div>
       </div>
     </div>
+  </div>
 
-  
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
   <script src="js/main.js"></script>
-  </body>
+</body>
+
 </html>
