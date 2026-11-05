@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://juanignaciodominguez.github.io/sitemap.xml
