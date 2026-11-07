@@ -51,9 +51,10 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --font-sans: var(--font-geist);
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", var(--font-inter), "Helvetica Neue", sans-serif;
   --font-serif: var(--font-instrument);
-  --font-mono: var(--font-geist-mono);
+  --font-mono: ui-monospace, "SF Mono", var(--font-jetbrains-mono), monospace;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", var(--font-inter), "Helvetica Neue", sans-serif;
 }
 
 @layer base {
@@ -62,6 +63,7 @@
   }
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 88px;
     color-scheme: dark;
   }
   body {
@@ -104,6 +106,75 @@
   letter-spacing: -0.02em;
 }
 
+/* Page container (same rhythm as the hero/nav reference) */
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 20px;
+  @media (width >= 48rem) {
+    padding-inline: 32px;
+  }
+  @media (width >= 64rem) {
+    padding-inline: 72px;
+  }
+  @media (width >= 96rem) {
+    padding-inline: 136px;
+  }
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.scroll-wheel {
+  animation: scroll-wheel 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes scroll-wheel {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+  }
+  80%,
+  100% {
+    opacity: 0;
+    transform: translateY(9px);
+  }
+}
+
+/* Hero portrait: layers clipped to the cutout's alpha */
+.hero-silhouette {
+  mask-image: url(/juan-cutout.png);
+  mask-size: contain;
+  mask-position: 50% 100%;
+  mask-repeat: no-repeat;
+}
+/* Rim = silhouette minus itself shifted left → only the right edge survives */
+.hero-rim {
+  mask-image: url(/juan-cutout.png), url(/juan-cutout.png);
+  mask-size: contain, contain;
+  mask-position: 50% 100%, calc(50% - 4px) 100%;
+  mask-repeat: no-repeat;
+  mask-composite: subtract;
+}
+
 /* Fixed film grain */
 .grain::after {
   content: "";
@@ -118,5 +189,9 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .marquee-track,
+  .scroll-wheel {
+    animation: none;
   }
 }

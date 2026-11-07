@@ -1,12 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import { LangProvider } from "@/components/site/LangProvider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import "./globals.css";
 
-const geist = Geist({ variable: "--font-geist", subsets: ["latin"] });
+// Apple devices render SF Pro (system font); Inter is the closest web fallback elsewhere
+const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 const serif = Instrument_Serif({ variable: "--font-instrument", subsets: ["latin"], weight: "400", style: ["normal", "italic"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const mono = JetBrains_Mono({ variable: "--font-jetbrains-mono", subsets: ["latin"] });
 
 const siteUrl = "https://juanignaciodominguez.github.io";
 
@@ -34,7 +35,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`dark ${geist.variable} ${serif.variable} ${geistMono.variable}`}>
+    <html lang="es" className={`dark ${inter.variable} ${serif.variable} ${mono.variable}`}>
       <body className="grain min-h-dvh">
         <LangProvider>
           <TooltipProvider delayDuration={150}>{children}</TooltipProvider>
