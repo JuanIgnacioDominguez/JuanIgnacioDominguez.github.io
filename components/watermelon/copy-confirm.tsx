@@ -33,10 +33,10 @@ export function CopyButton({
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.97 }}
-      animate={{ backgroundColor: copied ? "#35c26d" : "rgba(255,255,255,0.04)" }}
-      onClick={handleCopy}
-      className="relative flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full border border-white/10 px-4 py-2.5"
-      style={{ color: copied ? "#03130a" : "#35c26d" }}
+            onClick={handleCopy}
+      className={`relative flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full border border-foreground/10 px-4 py-2.5 transition-colors duration-300 ${
+        copied ? "bg-primary text-primary-foreground" : "bg-foreground/[0.04] text-primary"
+      }`}
     >
       <AnimatePresence mode="popLayout" initial={false}>
         <motion.div
@@ -59,7 +59,7 @@ export default function CopyConfirm({ title, icon, valueToCopy, copiedText, copy
     <div className="flex flex-wrap items-center gap-2">
       <a
         href={`mailto:${valueToCopy}`}
-        className="flex min-w-0 items-center gap-2 rounded-full border border-white/10 bg-background/50 px-4 py-2.5 transition-colors hover:border-primary/60"
+        className="flex min-w-0 items-center gap-2 rounded-full border border-foreground/10 bg-background/50 px-4 py-2.5 transition-colors hover:border-primary/60"
       >
         {icon && <span className="text-primary">{icon}</span>}
         <span className="truncate text-sm font-semibold text-foreground">{title}</span>

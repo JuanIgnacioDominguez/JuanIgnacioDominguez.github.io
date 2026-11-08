@@ -73,7 +73,7 @@ export function ScrollIsland({ topics, label }: ScrollIslandProps) {
             className="pointer-events-none fixed inset-x-0 bottom-5 z-40 flex justify-center px-4"
           >
             <motion.div
-              className="pointer-events-auto flex flex-col overflow-hidden border border-white/10 bg-card/90 shadow-2xl shadow-black/50 backdrop-blur-xl"
+              className="pointer-events-auto flex flex-col overflow-hidden border border-foreground/10 bg-card/90 shadow-2xl shadow-black/50 backdrop-blur-xl"
               initial={{ borderRadius: 32 }}
               animate={{
                 height: bounds.height > 0 ? bounds.height : "auto",
@@ -97,7 +97,7 @@ export function ScrollIsland({ topics, label }: ScrollIslandProps) {
                             document.getElementById(topic.id)?.scrollIntoView({ behavior: "smooth" });
                             setIsOpen(false);
                           }}
-                          className={`flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm transition-colors hover:bg-white/5 ${
+                          className={`flex w-full items-center gap-3 rounded-xl px-2 py-2 text-left text-sm transition-colors hover:bg-foreground/5 ${
                             current === topic.id ? "text-primary" : "text-muted-foreground hover:text-foreground"
                           }`}
                         >
@@ -105,7 +105,7 @@ export function ScrollIsland({ topics, label }: ScrollIslandProps) {
                           {topic.title}
                         </button>
                       ))}
-                      <div className="mx-2 mt-2 h-px bg-white/5" />
+                      <div className="mx-2 mt-2 h-px bg-foreground/5" />
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -119,7 +119,7 @@ export function ScrollIsland({ topics, label }: ScrollIslandProps) {
                     <motion.div
                       layout
                       className="relative size-7 shrink-0 rounded-full"
-                      style={{ background: `conic-gradient(#35c26d ${progress}%, #2a2c30 0)` }}
+                      style={{ background: `conic-gradient(var(--primary) ${progress}%, var(--muted) 0)` }}
                     >
                       <div className="absolute inset-[3px] rounded-full bg-card" />
                     </motion.div>

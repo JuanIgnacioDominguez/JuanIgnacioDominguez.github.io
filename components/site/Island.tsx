@@ -8,8 +8,8 @@ export function Island() {
   const topics = [
     { id: "top", title: t.island.top },
     { id: "about", title: t.nav.about },
-    { id: "work", title: t.nav.work },
     { id: "stack", title: t.nav.stack },
+    { id: "work", title: t.nav.work },
     { id: "journey", title: t.nav.journey },
     { id: "contact", title: t.nav.contact },
   ];

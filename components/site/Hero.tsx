@@ -1,186 +1,203 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRef, type MouseEvent, type ReactNode } from "react";
 import Image from "next/image";
-import { motion } from "motion/react";
-import { ArrowDown } from "lucide-react";
+import dynamic from "next/dynamic";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
+import { ArrowRight } from "lucide-react";
 import { profile } from "@/lib/content";
 import { useLang } from "./LangProvider";
+import { useTheme } from "./ThemeProvider";
 
-const EASE = [0.16, 1, 0.3, 1] as const;
-const GLYPHS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$&#@%";
+const GhostFibers = dynamic(() => import("@/components/reactbits/GhostFibers"), { ssr: false });
 
-const fadeUp = (delay: number) => ({
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  exit: { opacity: 0, y: 16 },
-  transition: { duration: 0.9, delay, ease: EASE },
-});
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-interface ScrambleTextProps {
-  text: string;
-  delay?: number;
-  className?: string;
-}
-
-/** Each letter cycles random glyphs, then locks in left to right. */
-function ScrambleText({ text, delay = 0, className = "" }: ScrambleTextProps) {
-  const [frame, setFrame] = useState(-1);
-
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      const id = setTimeout(() => setFrame(Number.MAX_SAFE_INTEGER), 0);
-      return () => clearTimeout(id);
-    }
-    const total = text.length * 2 + 8;
-    let f = 0;
-    let interval: ReturnType<typeof setInterval> | undefined;
-    const timeout = setTimeout(() => {
-      interval = setInterval(() => {
-        f += 1;
-        setFrame(f);
-        if (f >= total) clearInterval(interval);
-      }, 40);
-    }, delay * 1000);
-    return () => {
-      clearTimeout(timeout);
-      clearInterval(interval);
-    };
-  }, [text, delay]);
-
+/** A line of text that slides up from behind a mask. */
+function MaskLine({ children, delay, className = "" }: { children: ReactNode; delay: number; className?: string }): ReactNode {
+  const reduce = useReducedMotion();
   return (
-    <span className={`inline-block whitespace-nowrap ${className}`}>
-      <span className="sr-only">{text}</span>
-      <span aria-hidden="true">
-        {text.split("").map((ch, i) => {
-          const settled = frame >= i * 2 + 8;
-          const glyph = settled || ch === " " ? ch : GLYPHS[(i * 7 + Math.max(frame, 0) * 3) % GLYPHS.length];
-          return (
-            <span
-              key={i}
-              className="relative inline-block transition-[color,opacity] duration-150"
-              style={settled ? undefined : { color: "var(--primary)", opacity: frame < 0 ? 0.16 : 0.35 }}
-            >
-              <span className="invisible">{ch}</span>
-              <span className="absolute top-0 left-1/2 -translate-x-1/2">{glyph}</span>
-            </span>
-          );
-        })}
-      </span>
+    <span className="block overflow-hidden pb-[0.08em]">
+      <motion.span
+        initial={reduce ? false : { y: "110%" }}
+        animate={{ y: "0%" }}
+        exit={{ y: "110%" }}
+        transition={{ duration: 1.1, delay, ease: EASE }}
+        className={`block ${className}`}
+      >
+        {children}
+      </motion.span>
     </span>
   );
 }
 
-export function Hero() {
+/** Primary CTA that leans toward the cursor. */
+function MagneticLink({ href, children }: { href: string; children: ReactNode }): ReactNode {
+  const reduce = useReducedMotion();
+  const x = useSpring(0, { stiffness: 220, damping: 18, mass: 0.4 });
+  const y = useSpring(0, { stiffness: 220, damping: 18, mass: 0.4 });
+
+  const onMove = (e: MouseEvent<HTMLAnchorElement>) => {
+    if (reduce) return;
+    const r = e.currentTarget.getBoundingClientRect();
+    x.set((e.clientX - (r.left + r.width / 2)) * 0.25);
+    y.set((e.clientY - (r.top + r.height / 2)) * 0.35);
+  };
+  const onLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.a
+      href={href}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ x, y }}
+      className="group relative inline-flex h-12 items-center gap-3 overflow-hidden rounded-full bg-foreground pr-5 pl-6 text-[15px] font-medium text-background active:scale-[0.98]"
+    >
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 origin-bottom scale-y-0 rounded-full bg-primary transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-y-100"
+      />
+      <span className="relative transition-colors duration-500 group-hover:text-primary-foreground">{children}</span>
+      <ArrowRight className="relative size-4 transition-[transform,color] duration-500 group-hover:translate-x-0.5 group-hover:text-primary-foreground" />
+    </motion.a>
+  );
+}
+
+export function Hero(): ReactNode {
   const { t, lang } = useLang();
-  const name = `${profile.name} —`;
+  const { theme } = useTheme();
+  const reduce = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Scroll: copy drifts up and fades, portrait moves slower (parallax)
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
+  const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -80]);
+  const copyOpacity = useTransform(scrollYProgress, [0, 0.6], [1, reduce ? 1 : 0]);
+  const photoY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 120]);
+  const photoScale = useTransform(scrollYProgress, [0, 1], [1, reduce ? 1 : 1.08]);
 
   return (
     <section
+      ref={sectionRef}
       id="top"
       aria-labelledby="hero-title"
-      className="relative h-[100svh] min-h-[640px] overflow-hidden bg-background [--name-bottom:14%] [--name-size:clamp(3.25rem,9.5vw,9.5rem)] md:[--name-bottom:13%] lg:[--hero-base:40%]"
+      className="relative flex min-h-[100dvh] items-center overflow-hidden bg-background pt-24 pb-16"
     >
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-[-20%] left-1/2 size-[min(1100px,120vw)] -translate-x-1/2 rounded-full bg-primary/15 blur-[120px]"
-      />
-
-      <motion.div
-        initial={{ y: 40 }}
-        animate={{ y: 0 }}
-        exit={{ y: 40 }}
-        transition={{ duration: 1.2, delay: 0.1, ease: EASE }}
-        className="absolute bottom-[calc(var(--name-bottom)+var(--name-size))] left-1/2 z-10 aspect-square h-[33%] max-w-[85vw] -translate-x-1/2 md:h-[36%] lg:bottom-[calc(var(--hero-base)-6%)] lg:left-[min(70%,calc(50%+300px))] lg:h-[56%]"
-      >
-        {/* Soft spotlight behind the right shoulder */}
-        <div
-          aria-hidden="true"
-          className="absolute top-[8%] right-[-30%] bottom-[10%] left-[55%] rounded-full bg-[radial-gradient(closest-side,rgb(53_194_109/0.22),transparent)] blur-3xl"
+      {/* React Bits: Ghost Fibers, tinted with the site accent */}
+      <div aria-hidden="true" className="absolute inset-0">
+        <GhostFibers
+          glowColor={theme === "dark" ? "#3ddc97" : "#0a9a5f"}
+          secondaryColor={theme === "dark" ? "#a7f3d0" : "#34d399"}
+          lightMode={theme === "light"}
+          speed={0.35}
+          threads={64}
+          glow={theme === "dark" ? 0.7 : 0.5}
+          brightness={theme === "dark" ? 0.9 : 1}
+          vignette={0.45}
+          grain={0.04}
+          hoverEffect="part"
+          pulseOnClick={false}
+          paused={!!reduce}
         />
-        <div className="absolute inset-0 [mask-composite:intersect] [mask-image:linear-gradient(to_bottom,black_90%,transparent),linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-          <Image
-            src="/juan-cutout.png"
-            alt={profile.name}
-            fill
-            priority
-            sizes="(min-width: 768px) 620px, 92vw"
-            className="object-contain object-bottom [filter:brightness(1.04)_contrast(1.06)_saturate(0.94)]"
-          />
-          {/* Right-side light (key wrap + thin rim), faded out before the flat crop at the bottom */}
-          <div aria-hidden="true" className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black_55%,transparent_82%)]">
-            <div className="hero-silhouette absolute inset-0 bg-[linear-gradient(to_left,rgb(53_194_109/0.28),transparent_45%)] mix-blend-screen" />
-            <div className="hero-rim absolute inset-0 bg-[linear-gradient(to_left,rgb(140_240_175/0.75),rgb(53_194_109/0.35)_45%,transparent_75%)] opacity-90 mix-blend-screen blur-[2px]" />
-          </div>
-        </div>
-      </motion.div>
+        {/* Keeps the copy legible over the fibers */}
+        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,var(--background)_0%,color-mix(in_srgb,var(--background)_70%,transparent)_45%,transparent_75%)] max-lg:bg-[linear-gradient(180deg,color-mix(in_srgb,var(--background)_75%,transparent),color-mix(in_srgb,var(--background)_40%,transparent))]" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background" />
+      </div>
 
       <div
         key={lang}
-        className="absolute inset-x-5 top-[88px] z-20 max-w-[34rem] md:inset-x-[max(32px,calc((100%-1280px)/2+32px))] lg:right-auto lg:left-[max(72px,calc((100%-1280px)/2+72px))] lg:top-auto lg:bottom-[var(--hero-base)] lg:w-[min(40vw,34rem)]"
+        className="relative mx-auto grid w-full max-w-[1240px] items-center gap-14 px-5 md:px-8 lg:grid-cols-12 lg:gap-8 lg:px-10"
       >
-        <motion.p {...fadeUp(0)} className="eyebrow text-primary">
-          {t.hero.hello}
-        </motion.p>
-
-        <motion.p
-          {...fadeUp(0.05)}
-          className="mt-3 font-display text-[clamp(2.4rem,4.6vw,4.5rem)] leading-[1.02] font-semibold tracking-[-0.035em]"
-        >
-          <ScrambleText text={t.hero.titleA} delay={0.2} />
-          <br />
-          <ScrambleText text={t.hero.titleB} delay={0.45} className="text-primary" />
-        </motion.p>
-
-        <motion.p {...fadeUp(0.15)} className="mt-5 text-[1.0625rem] leading-relaxed text-foreground/80 md:text-lg">
-          {t.hero.lead}
-        </motion.p>
-
-        <motion.div {...fadeUp(0.3)} className="mt-8 flex flex-wrap gap-3">
-          <a
-            href="#work"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium whitespace-nowrap text-primary-foreground transition-[background-color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:bg-primary/90 active:translate-y-px"
+        <motion.div style={{ y: copyY, opacity: copyOpacity }} className="lg:col-span-7">
+          <motion.p
+            initial={reduce ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+            className="text-[15px] font-medium text-muted-foreground"
           >
-            {t.hero.ctaWork}
-            <ArrowDown className="size-4" />
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex h-12 items-center justify-center rounded-lg border border-white/10 bg-black/40 px-7 text-sm font-medium whitespace-nowrap text-foreground backdrop-blur-sm transition-[color,transform] duration-200 ease-out hover:-translate-y-0.5 hover:text-primary active:translate-y-px"
+            {profile.name}
+          </motion.p>
+
+          <h1
+            id="hero-title"
+            className="mt-5 font-display text-[clamp(2.4rem,4.8vw,4.1rem)] leading-[1.02] font-semibold tracking-[-0.04em] text-balance"
           >
-            {t.hero.ctaContact}
-          </a>
+            <MaskLine delay={0.15}>{t.hero.titleA}</MaskLine>
+            <MaskLine delay={0.27} className="text-primary">
+              {t.hero.titleB}
+            </MaskLine>
+          </h1>
+
+          <motion.p
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
+            className="mt-7 max-w-[30rem] text-[17px] leading-relaxed text-subtle"
+          >
+            {t.hero.lead}
+          </motion.p>
+
+          <motion.div
+            initial={reduce ? false : { opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.9, delay: 0.7, ease: EASE }}
+            className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4"
+          >
+            <MagneticLink href="#work">{t.hero.ctaWork}</MagneticLink>
+            <a
+              href="#contact"
+              className="group relative text-[15px] font-medium text-foreground"
+            >
+              {t.hero.ctaContact}
+              <span
+                aria-hidden="true"
+                className="absolute -bottom-1 left-0 h-px w-full origin-right scale-x-100 bg-foreground/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:origin-left group-hover:bg-foreground"
+              />
+            </a>
+          </motion.div>
         </motion.div>
+
+        <div className="lg:col-span-5">
+          <motion.div
+            initial={reduce ? false : { clipPath: "inset(100% 0% 0% 0% round 20px)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0% round 20px)" }}
+            exit={{ clipPath: "inset(100% 0% 0% 0% round 20px)" }}
+            transition={{ duration: 1.4, delay: 0.2, ease: [0.76, 0, 0.24, 1] }}
+            style={{ y: photoY }}
+            className="group relative mx-auto aspect-[4/5] w-full max-w-[420px] overflow-hidden rounded-[20px] bg-muted lg:ml-auto"
+          >
+            <motion.div
+              initial={reduce ? false : { scale: 1.3 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 1.8, delay: 0.2, ease: EASE }}
+              className="absolute inset-0"
+            >
+              <motion.div style={{ scale: photoScale }} className="absolute inset-0">
+                <Image
+                  src={profile.photo}
+                  alt={profile.name}
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 420px, 90vw"
+                  className="object-cover object-[50%_30%] saturate-[0.9] contrast-[1.04] transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
-
-      <motion.h1
-        id="hero-title"
-        aria-label={`${profile.name} — ${t.hero.role}`}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 1, delay: 0.3, ease: EASE }}
-        className="absolute inset-x-0 bottom-[var(--name-bottom)] z-0 overflow-hidden font-display text-[length:var(--name-size)] leading-none font-medium tracking-[-0.04em] whitespace-nowrap text-foreground"
-      >
-        <span aria-hidden="true" className="marquee-track">
-          {[0, 1, 2, 3].map((i) => (
-            <span key={i} className="pr-[0.35em]">
-              {name}
-            </span>
-          ))}
-        </span>
-      </motion.h1>
-
-      <a
-        href="#about"
-        className="absolute bottom-[3%] left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-3 text-muted-foreground transition-colors duration-200 hover:text-foreground"
-      >
-        <span aria-hidden="true" className="flex h-8 w-5 justify-center rounded-full border-[1.5px] border-current pt-1.5">
-          <span className="scroll-wheel h-1.5 w-0.5 rounded-full bg-current" />
-        </span>
-        <span className="eyebrow whitespace-nowrap">{t.hero.scroll}</span>
-      </a>
     </section>
   );
 }

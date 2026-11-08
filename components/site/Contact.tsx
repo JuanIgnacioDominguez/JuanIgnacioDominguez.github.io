@@ -47,12 +47,12 @@ export function Contact() {
 
   return (
     <>
-      <section id="contact" className="relative scroll-mt-20 overflow-hidden border-t border-white/[0.06]">
-        <div className="pointer-events-none absolute bottom-[-30%] left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,rgba(53,194,109,0.12),transparent)]" />
+      <section id="contact" className="relative scroll-mt-20 overflow-hidden border-t border-foreground/[0.06]">
+        <div className="pointer-events-none absolute bottom-[-30%] left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full bg-[radial-gradient(closest-side,color-mix(in_srgb,var(--primary)_12%,transparent),transparent)]" />
 
         <div className="relative mx-auto grid max-w-[1080px] gap-14 px-5 py-28 md:py-40 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <Reveal className="flex flex-col gap-8 lg:sticky lg:top-24 lg:self-start">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-[#a1a1a6]">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full border border-foreground/10 bg-foreground/[0.03] px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-subtle">
               <span className="size-1 rounded-full bg-primary" />
               {t.contact.label}
             </span>
@@ -60,10 +60,10 @@ export function Contact() {
               <span className="text-headline block pb-1">{t.contact.titleA}</span>
               <span className="font-accent block pb-2 text-[1.12em] text-primary">{t.contact.titleB}</span>
             </h2>
-            <p className="max-w-lg text-lg leading-relaxed text-[#a1a1a6]">{t.contact.lead}</p>
+            <p className="max-w-lg text-lg leading-relaxed text-subtle">{t.contact.lead}</p>
             <a
               href={`mailto:${profile.email}`}
-              className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-[15px] font-medium text-primary-foreground shadow-[0_8px_30px_-8px_rgba(53,194,109,0.6)] transition-transform hover:scale-[1.03]"
+              className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-[15px] font-medium text-primary-foreground shadow-[0_8px_30px_-8px_color-mix(in_srgb,var(--primary)_60%,transparent)] transition-transform hover:scale-[1.03]"
             >
               Email <ArrowRight className="size-4" />
             </a>
@@ -73,7 +73,7 @@ export function Contact() {
                 <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
                   {t.contact.find}
                 </span>
-                <span className="h-px flex-1 bg-white/10" />
+                <span className="h-px flex-1 bg-foreground/10" />
               </div>
               <div className="flex flex-wrap gap-x-7 gap-y-3">
                 {SOCIALS.map(({ label, href, icon: Icon }) => (
@@ -108,7 +108,7 @@ export function Contact() {
                 <CopyButton valueToCopy={profile.email} copyText={t.contact.copy} copiedText={t.contact.copied} />
               </div>
 
-              <div className="my-7 h-px bg-white/[0.08]" />
+              <div className="my-7 h-px bg-foreground/[0.08]" />
 
               <span className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
                 {t.contact.available}
@@ -118,12 +118,12 @@ export function Contact() {
                   const Icon = AVAILABILITY_ICONS[i];
                   return (
                     <li key={a.title} className="flex items-center gap-4">
-                      <span className="grid size-11 shrink-0 place-items-center rounded-2xl border border-white/[0.08] bg-white/[0.03] text-primary">
+                      <span className="grid size-11 shrink-0 place-items-center rounded-2xl border border-foreground/[0.08] bg-foreground/[0.03] text-primary">
                         <Icon className="size-5" strokeWidth={1.7} />
                       </span>
                       <div>
                         <p className="font-semibold">{a.title}</p>
-                        <p className="text-sm text-[#a1a1a6]">{a.body}</p>
+                        <p className="text-sm text-subtle">{a.body}</p>
                       </div>
                     </li>
                   );
@@ -152,7 +152,7 @@ export function Contact() {
         </div>
       </section>
 
-      <footer className="border-t border-white/[0.06]">
+      <footer className="border-t border-foreground/[0.06]">
         <div className="mx-auto flex max-w-[1080px] flex-col gap-8 px-5 py-10 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-3">
             <span className="text-lg font-semibold">
@@ -163,7 +163,7 @@ export function Contact() {
               <p className="text-muted-foreground">{t.hero.role}</p>
             </div>
           </div>
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[#a1a1a6]">
+          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-subtle">
             {NAV.map((id) => (
               <a key={id} href={`#${id}`} className="hover:text-foreground">
                 {t.nav[id]}
@@ -171,21 +171,21 @@ export function Contact() {
             ))}
           </nav>
           <div className="flex items-center gap-5">
-            <button onClick={toggle} className="text-xs font-medium text-[#a1a1a6] hover:text-foreground">
+            <button onClick={toggle} className="text-xs font-medium text-subtle hover:text-foreground">
               <span className={lang === "es" ? "text-foreground" : ""}>ES</span>
-              <span className="mx-1.5 text-white/20">|</span>
+              <span className="mx-1.5 text-foreground/20">|</span>
               <span className={lang === "en" ? "text-foreground" : ""}>EN</span>
             </button>
             <a
               href="#top"
               aria-label={t.footer.top}
-              className="grid size-11 place-items-center rounded-full border border-white/10 transition-colors hover:border-primary hover:text-primary"
+              className="grid size-11 place-items-center rounded-full border border-foreground/10 transition-colors hover:border-primary hover:text-primary"
             >
               <ArrowUp className="size-4" />
             </a>
           </div>
         </div>
-        <p className="mx-auto max-w-[1080px] border-t border-white/[0.06] px-5 py-5 pb-24 text-xs text-muted-foreground">
+        <p className="mx-auto max-w-[1080px] border-t border-foreground/[0.06] px-5 py-5 pb-24 text-xs text-muted-foreground">
           © {new Date().getFullYear()} · {t.footer.rights}
         </p>
       </footer>

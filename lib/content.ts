@@ -104,7 +104,7 @@ export const projects: Project[] = [
 
 export const education: TimelineItem[] = [
   {
-    period: { es: "2022 — Hoy", en: "2022 — Now" },
+    period: { es: "2022 - Hoy", en: "2022 - Now" },
     title: { es: "Ingeniería en Informática", en: "Computer Engineering" },
     place: "UADE · Buenos Aires",
     detail: {
@@ -113,8 +113,8 @@ export const education: TimelineItem[] = [
     },
   },
   {
-    period: { es: "2020 — 2021", en: "2020 — 2021" },
-    title: { es: "IGCSE ICE — Merit", en: "IGCSE ICE — Merit" },
+    period: { es: "2020 - 2021", en: "2020 - 2021" },
+    title: { es: "IGCSE ICE (Merit)", en: "IGCSE ICE (Merit)" },
     place: "Cambridge International",
     detail: {
       es: "Business, English y Español como primera lengua (2021); Maths, Chemistry, History y Literature (2020).",
@@ -122,8 +122,8 @@ export const education: TimelineItem[] = [
     },
   },
   {
-    period: { es: "2005 — 2021", en: "2005 — 2021" },
-    title: { es: "Bachillerato en Ciencias Sociales", en: "High School — Social Sciences" },
+    period: { es: "2005 - 2021", en: "2005 - 2021" },
+    title: { es: "Bachillerato en Ciencias Sociales", en: "High School in Social Sciences" },
     place: "St. Albans College",
     detail: {
       es: "Educación bilingüe. Inglés nativo / bilingüe.",
@@ -132,11 +132,38 @@ export const education: TimelineItem[] = [
   },
 ];
 
-export const life = [
-  { image: "/life/muay-thai.jpg", text: "Muay Thai" },
-  { image: "/life/amigos.jpg", text: "Amigos · Friends" },
-  { image: "/life/mascotas.jpg", text: "Mascotas · Pets" },
-  { image: "/life/uade.webp", text: "UADE" },
+export interface LifeItem {
+  image: string;
+  title: Record<Lang, string>;
+  body: Record<Lang, string>;
+}
+
+export const life: LifeItem[] = [
+  {
+    image: "/juan.png",
+    title: { es: "Hola, soy Juan.", en: "Hi, I'm Juan." },
+    body: { es: "Desarrollador full-stack en Buenos Aires.", en: "Full-stack developer in Buenos Aires." },
+  },
+  {
+    image: "/life/muay-thai.jpg",
+    title: { es: "Muay Thai.", en: "Muay Thai." },
+    body: { es: "Disciplina dentro y fuera del código.", en: "Discipline in and out of code." },
+  },
+  {
+    image: "/life/uade.webp",
+    title: { es: "UADE.", en: "UADE." },
+    body: { es: "5° año de Ingeniería en Informática.", en: "5th year of Computer Engineering." },
+  },
+  {
+    image: "/life/amigos.jpg",
+    title: { es: "Amigos.", en: "Friends." },
+    body: { es: "El tiempo con los míos no se negocia.", en: "Time with my people is non-negotiable." },
+  },
+  {
+    image: "/life/mascotas.jpg",
+    title: { es: "Mascotas.", en: "Pets." },
+    body: { es: "Mis compañeros de home office.", en: "My home-office coworkers." },
+  },
 ];
 
 export { dict, type Dict } from "./dict";

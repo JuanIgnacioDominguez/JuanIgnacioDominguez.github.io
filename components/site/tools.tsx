@@ -46,11 +46,11 @@ export type GroupKey = "frontend" | "backend" | "data" | "ai" | "tools";
 export const TOOL_GROUPS: Record<GroupKey, Tool[]> = {
   frontend: [
     { name: "React", icon: SiReact, color: "#61dafb" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#ffffff" },
+    { name: "Next.js", icon: SiNextdotjs, color: "var(--foreground)" },
     { name: "TypeScript", icon: SiTypescript, color: "#3178c6" },
     { name: "JavaScript", icon: SiJavascript, color: "#f7df1e" },
     { name: "React Native", icon: SiReact, color: "#61dafb" },
-    { name: "Expo", icon: SiExpo, color: "#ffffff" },
+    { name: "Expo", icon: SiExpo, color: "var(--foreground)" },
     { name: "Redux", icon: SiRedux, color: "#764abc" },
     { name: "Tailwind", icon: SiTailwindcss, color: "#38bdf8" },
     { name: "Bootstrap", icon: SiBootstrap, color: "#7952b3" },
@@ -80,7 +80,7 @@ export const TOOL_GROUPS: Record<GroupKey, Tool[]> = {
   ],
   tools: [
     { name: "Git", icon: SiGit, color: "#f05032" },
-    { name: "GitHub", icon: SiGithub, color: "#ffffff" },
+    { name: "GitHub", icon: SiGithub, color: "var(--foreground)" },
     { name: "Figma", icon: SiFigma, color: "#f24e1e" },
     { name: "Postman", icon: SiPostman, color: "#ff6c37" },
     { name: "Vite", icon: SiVite, color: "#9135ff" },
